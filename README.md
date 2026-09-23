@@ -195,8 +195,8 @@ printf '[connection]\nwifi.powersave = 2\n' > /etc/NetworkManager/conf.d/wifi-po
 `mobian_ctl.py` —— paramiko 远程执行器，自动应答 sudo 密码。
 
 ```bash
-python mobian_ctl.py --host 192.168.1.160 --password 1234 --file step.txt
-python mobian_ctl.py --host 192.168.1.160 --cmd "uname -a"
+python mobian_ctl.py --host <内网IP> --password <Mobian默认密码> --file step.txt
+python mobian_ctl.py --host <内网IP> --cmd "uname -a"
 ```
 
 两个关键坑：
@@ -219,4 +219,5 @@ python mobian_ctl.py --host 192.168.1.160 --cmd "uname -a"
 
 ## 待办
 
-1. 触屏中文输入方案待定（接物理键盘时可重新装 fcitx5，但要把自启隔离好）
+1. 改掉默认密码 `<Mobian默认密码>`
+2. 触屏中文输入方案待定（接物理键盘时可重新装 fcitx5，但要把自启隔离好）
