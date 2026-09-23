@@ -1,0 +1,14 @@
+systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+printf '[connection]\nwifi.powersave = 2\n' > /etc/NetworkManager/conf.d/wifi-powersave-off.conf
+echo '=== 已禁止系统挂起 + 关闭 WiFi 省电 ==='
+apt purge -y $(dpkg -l | awk '/fcitx|libime/{print $2}')
+apt autoremove -y --purge
+echo '=== fcitx5 进程 ==='
+pgrep -a fcitx5 || echo 'fcitx5 已清除'
+echo '=== osk-stub 屏幕键盘 ==='
+pgrep -a phosh-osk-stub || echo '未运行'
+echo '=== 剩余 fcitx 包数 ==='
+dpkg -l | grep -i fcitx | wc -l
+echo '=== suspend 状态（应为 masked）==='
+systemctl is-enabled suspend.target
+echo ALL_FIX_DONE
