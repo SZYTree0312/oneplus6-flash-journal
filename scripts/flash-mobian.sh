@@ -4,8 +4,8 @@
 #   手机进 fastboot：关机后按住【音量上 + 电源】不放，出现绿色 START 即到
 set -e
 
-PT="C:/Users/DELL/Downloads/Compressed/platform-tools-latest-windows/platform-tools"
-IMG="C:/Users/DELL/Downloads/mobian-flash"
+PT="C:/Users/<用户名>/Downloads/Compressed/platform-tools-latest-windows/platform-tools"
+IMG="C:/Users/<用户名>/Downloads/mobian-flash"
 FB="$PT/fastboot.exe"
 BOOT="$IMG/mobian-sdm845-phosh-20251002.boot-enchilada.img"
 ROOTFS="$IMG/mobian-sdm845-phosh-20251002.rootfs.img"
