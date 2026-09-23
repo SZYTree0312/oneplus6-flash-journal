@@ -7,8 +7,8 @@
 # 工具：Google 官方 Android SDK platform-tools（fastboot）
 set -e
 
-PT="C:/Users/DELL/Downloads/Compressed/platform-tools-latest-windows/platform-tools"
-IMG="C:/Users/DELL/Downloads/pmos-flash"
+PT="C:/Users/<用户名>/Downloads/Compressed/platform-tools-latest-windows/platform-tools"
+IMG="C:/Users/<用户名>/Downloads/pmos-flash"
 FB="$PT/fastboot.exe"
 BOOT="$IMG/pmos-enchilada-boot.img"
 ROOTFS="$IMG/pmos-enchilada-rootfs.img"
