@@ -208,6 +208,17 @@ python mobian_ctl.py --host <内网IP> --cmd "uname -a"
 
 ---
 
+## 八、镜像包与刷机脚本
+
+- **`OS/`** —— 本次实际使用的两个系统安装包清单，**含 SHA256 校验值**
+  - 899 MB 与 1.4 GB 两个包超过 GitHub 单文件 100 MB 上限，改为记录官方下载地址，自行下载核对
+  - 28 MB 的 pmOS boot 包已直接入库
+- **`scripts/`** —— 全部基于 **Google 官方 Android SDK platform-tools**（adb / fastboot）：
+  - `unlock-bootloader.sh` —— 解锁 bootloader，含手机端手动确认的步骤提示
+  - `flash-mobian.sh` —— 刷 Mobian（slot A，最终方案）
+  - `flash-pmos.sh` —— 刷 postmarketOS（过程存档）
+  - `extract-images.py` —— 解压镜像（Windows 无 xz 时用，纯标准库）
+
 ## 当前状态
 
 - ✅ Mobian + Phosh 正常运行，解锁 → 开机 → 桌面完整可用
