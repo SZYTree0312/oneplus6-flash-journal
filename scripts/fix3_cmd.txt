@@ -1,0 +1,13 @@
+apt --fix-broken install -y
+echo '=== 依赖修复完成 ==='
+apt purge -y $(dpkg -l | awk '/fcitx|libime/{print $2}')
+apt autoremove -y --purge
+echo '=== fcitx5 进程 ==='
+pgrep -a fcitx5 || echo 'fcitx5 已清除'
+echo '=== osk-stub 屏幕键盘 ==='
+pgrep -a phosh-osk-stub || echo '未运行'
+echo '=== 剩余 fcitx 包数（应为 0）==='
+dpkg -l | grep -i fcitx | wc -l
+echo '=== apt 健康检查 ==='
+apt-get check 2>&1 | tail -3
+echo FIX3_DONE
