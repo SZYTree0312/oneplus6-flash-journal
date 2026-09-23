@@ -13,7 +13,7 @@ import lzma
 import shutil
 import tarfile
 
-BASE = r'C:\Users\<用户名>\Downloads'
+BASE = r'C:/Users/<用户名>\Downloads'
 
 
 def unxz(src, dst):
