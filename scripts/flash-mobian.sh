@@ -31,4 +31,4 @@ echo "== 5/6 擦除 dtbo =="
 echo "== 6/6 重启进系统 =="
 "$FB" reboot
 
-echo "全部完成。首次开机 Mobian 会扩展文件系统，可能等 5-10 分钟。登录 mobian / 1234"
+echo "全部完成。首次开机 Mobian 会扩展文件系统，可能等 5-10 分钟。登录 mobian / <Mobian默认密码>"
