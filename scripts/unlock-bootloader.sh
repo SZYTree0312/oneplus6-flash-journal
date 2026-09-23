@@ -7,7 +7,7 @@
 # 用法：手机开机进系统、USB 调试已打开、连好线，然后执行本脚本
 set -e
 
-PT="C:/Users/DELL/Downloads/Compressed/platform-tools-latest-windows/platform-tools"
+PT="C:/Users/<用户名>/Downloads/Compressed/platform-tools-latest-windows/platform-tools"
 ADB="$PT/adb.exe"
 FB="$PT/fastboot.exe"
 
