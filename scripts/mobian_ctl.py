@@ -13,9 +13,9 @@
 import argparse, time, socket, sys, re
 
 ap = argparse.ArgumentParser()
-ap.add_argument('--host', default='192.168.1.160')
+ap.add_argument('--host', default='<内网IP>')
 ap.add_argument('--user', default='mobian')
-ap.add_argument('--password', default='1234')
+ap.add_argument('--password', default='')
 ap.add_argument('--cmd', help='单条命令')
 ap.add_argument('--file', help='命令文件，每行一条')
 ap.add_argument('--idle', type=float, default=15.0, help='无输出持续多少秒判定该命令结束')
