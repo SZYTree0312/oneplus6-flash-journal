@@ -226,9 +226,42 @@ python mobian_ctl.py --host <内网IP> --cmd "uname -a"
 - ✅ apt 国内源（USTC），sshd enabled + active
 - ✅ 编译工具链（gcc 14.2 / g++ / cmake / gdb / git）
 - ✅ 息屏不再断网，SSH 稳定
-- ⚠️ 触屏中文拼音输入暂缺（fcitx5 会抢键盘，已卸）
+- ✅ 触屏中文拼音输入已解决（**Treenput**：纯用户态 uim 引擎，不顶替屏幕键盘，详见第九节）
+- ✅ 屏幕横竖旋转脚本（桌面 / Electron 宽屏场景，详见第十节）
 
 ## 待办
 
 1. 改掉默认密码 `<Mobian默认密码>`
-2. 触屏中文输入方案待定（接物理键盘时可重新装 fcitx5，但要把自启隔离好）
+
+---
+
+## 九、触屏中文输入：Treenput
+
+第五节那个「fcitx5 顶掉屏幕键盘」的坑，根因是 Phosh 下没有可用的触屏中文输入方案。
+现在用 **[Treenput](https://github.com/SZYTree0312/Treenput)** 解决了。
+
+**Treenput** 是面向 Mobian / Phosh 的简体拼音输入方案：
+
+- **纯用户态**，不修改内核、不替换系统输入法框架（仍用系统自带的 `uim` + `phosh-osk-stub`）
+- 因此**不会顶替屏幕键盘** —— 这正是 fcitx5 出事的地方
+- 一条命令装完，重启后仍是中文键盘，打拼音出汉字候选
+- 当前 `v1.1.3`：中文标点一键直达、用户词典（加自己的词 + 词频校准），真机实测通过
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/SZYTree0312/Treenput/main/install.sh | sudo sh
+```
+
+装完重启 phosh（或 `install.sh --replace-now` 立即接管），点键盘左上角切到拼音模式即可。
+详细原理、词库生成、用户词典用法见 Treenput 仓库 README。
+
+> 物理键盘场景仍可用 fcitx5，但务必把自启隔离好（见第五节的教训）；
+> 纯触屏场景推荐 Treenput，与本节「不抢键盘」的目标一致。
+
+## 十、屏幕旋转脚本
+
+把手机当小桌面 / 跑 Electron 宽屏应用时，需要把屏幕转成横屏。本仓库 `scripts/` 下提供两个脚本：
+
+- `phone-screen-landscape.sh` —— 横屏：`wlr-randr --output DSI-1 --transform 90 --scale 2`（适配桌面 / Electron 宽屏）
+- `phone-screen-reset.sh` —— 恢复默认竖屏：`--transform normal --scale 3`
+
+直接 `bash scripts/phone-screen-landscape.sh` 即可，无需参数。手机真源装在 `/usr/local/bin/`（无 `.sh` 后缀，当命令用），与仓库里这份内容一致。
